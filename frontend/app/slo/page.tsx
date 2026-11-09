@@ -1,0 +1,13 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Gauge, Info } from "lucide-react";
+import { api, formatPercent, type SLOPolicy, type Workload } from "@/lib/api";
+import { PageHeader, SectionHeading, StatusPill } from "@/components/PortalShell";
+import { ErrorState, EmptyState } from "@/components/Ui";
+
+export default function SloPage() {
+  const [policies, setPolicies] = useState<SLOPolicy[]>([]); const [workloads, setWorkloads] = useState<Workload[]>([]); const [error, setError] = useState("");
+  useEffect(() => { Promise.all([api<SLOPolicy[]>("/api/v1/slo-policies"), api<Workload[]>("/api/v1/workloads")]).then(([items, services]) => { setPolicies(items); setWorkloads(services); }).catch((reason) => setError(reason instanceof Error ? reason.message : "Unable to read SLO policies")); }, []);
+  return <><PageHeader eyebrow="06 / service objectives" title="SLO Explorer." description="Policy thresholds are evaluated against candidate-specific observations. Healthy pods and healthy releases remain separate signals." />{error ? <ErrorState message={error} /> : <><SectionHeading title="Configured objectives" detail={`${policies.length} policy${policies.length === 1 ? "" : "ies"}`} />{policies.length === 0 ? <EmptyState title="No SLO policies" detail="Seed data creates a guardrail for the demo workload." /> : <div className="grid two">{policies.map((policy) => { const workload = workloads.find((item) => item.id === policy.workload_id); return <article className="panel panel-inner" key={policy.id}><div className="release-card-header"><div><h3>{policy.name}</h3><p>{workload?.deployment_name || "unknown workload"} · {policy.observation_window_seconds}s window</p></div><StatusPill value={workload?.health_status || "UNKNOWN"} /></div><div className="detail-grid" style={{ marginTop: 18 }}><div className="detail-cell"><span>availability target</span><strong>{formatPercent(policy.availability_target)}</strong></div><div className="detail-cell"><span>max error rate</span><strong>{formatPercent(policy.error_threshold)}</strong></div><div className="detail-cell"><span>max p95 latency</span><strong>{policy.latency_threshold_ms} ms</strong></div><div className="detail-cell"><span>minimum samples</span><strong>{policy.minimum_sample_count}</strong></div></div><div className="detail-cell" style={{ marginTop: 12 }}><span><Info size={12} /> additional guardrails</span><strong>readiness {formatPercent(policy.readiness_target)} · restarts ≤ {policy.max_restart_count} · pressure ≤ {formatPercent(policy.max_resource_pressure)}</strong></div></article>; })}</div>}</>}</>;
+}

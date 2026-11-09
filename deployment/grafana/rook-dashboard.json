@@ -1,0 +1,25 @@
+{
+  "title": "Rook release reliability",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Release observations by decision",
+      "targets": [{"expr": "sum by (decision) (rate(rook_release_observations_total[5m]))"}],
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+    },
+    {
+      "type": "stat",
+      "title": "Rollback count",
+      "targets": [{"expr": "rook_release_rollbacks_total"}],
+      "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0}
+    },
+    {
+      "type": "stat",
+      "title": "Active releases",
+      "targets": [{"expr": "rook_active_releases"}],
+      "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0}
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: rook
+description: Rook sample workload and least-privilege control-plane access
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

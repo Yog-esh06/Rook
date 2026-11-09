@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" role="img" aria-labelledby="title desc">
+  <title id="title">Rook release reliability platform</title>
+  <desc id="desc">A dark engineering control room banner with stable and canary workload paths, health signals, and a rollback branch.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07110f"/>
+      <stop offset="1" stop-color="#132b25"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="0" x2="1"><stop stop-color="#5eead4"/><stop offset="1" stop-color="#b8e986"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0V42" fill="none" stroke="#8eb9a5" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="1600" height="620" fill="url(#bg)"/>
+  <rect width="1600" height="620" fill="url(#grid)"/>
+  <path d="M0 490 C280 420 350 550 600 470 S980 390 1200 450 S1440 530 1600 400" fill="none" stroke="#5eead4" stroke-opacity=".12" stroke-width="2"/>
+  <g opacity=".82" filter="url(#glow)" fill="none" stroke="url(#mint)" stroke-width="2">
+    <path d="M120 340 H360 L475 230 H730 L850 330 H1110 L1240 230 H1480"/>
+    <path d="M730 330 L870 475 H1130" stroke="#ff7d78" stroke-dasharray="10 10"/>
+  </g>
+  <g fill="#0e211c" stroke="#5eead4" stroke-width="2">
+    <rect x="82" y="292" width="76" height="76" rx="8"/>
+    <rect x="322" y="292" width="76" height="76" rx="8"/>
+    <rect x="438" y="182" width="76" height="76" rx="8"/>
+    <rect x="692" y="292" width="76" height="76" rx="8"/>
+    <rect x="1072" y="292" width="76" height="76" rx="8"/>
+    <rect x="1202" y="182" width="76" height="76" rx="8"/>
+    <rect x="1084" y="437" width="76" height="76" rx="8" stroke="#ff7d78"/>
+    <rect x="1422" y="292" width="76" height="76" rx="8"/>
+  </g>
+  <g fill="#b8e986" font-family="monospace" font-size="16" text-anchor="middle">
+    <text x="120" y="324">v1</text><text x="120" y="349">stable</text>
+    <text x="360" y="324">5%</text><text x="360" y="349">canary</text>
+    <text x="476" y="214">25%</text><text x="476" y="239">observe</text>
+    <text x="730" y="324">50%</text><text x="730" y="349">evidence</text>
+    <text x="1110" y="324">100%</text><text x="1110" y="349">promote</text>
+    <text x="1240" y="214">p95</text><text x="1240" y="239">health</text>
+    <text x="1122" y="469" fill="#ffaaa3">halt</text><text x="1122" y="494" fill="#ffaaa3">rollback</text>
+    <text x="1460" y="324">✓</text><text x="1460" y="349">recover</text>
+  </g>
+  <g transform="translate(100 70)">
+    <text x="0" y="0" fill="#b8e986" font-family="monospace" font-size="15" letter-spacing="4">KUBERNETES RELEASE RELIABILITY</text>
+    <text x="0" y="78" fill="#ebf3ee" font-family="Arial, sans-serif" font-size="80" font-weight="700" letter-spacing="8">ROOK</text>
+    <text x="4" y="122" fill="#a8c9bb" font-family="Arial, sans-serif" font-size="25">Release safely. Detect failure. Recover with evidence.</text>
+  </g>
+  <g transform="translate(100 545)" fill="#7f9f90" font-family="monospace" font-size="14">
+    <text x="0">FASTAPI</text><text x="120">NEXT.JS</text><text x="250">PROMETHEUS</text><text x="410">KIND / K3D</text><text x="550">GITOPS READY</text>
+  </g>
+</svg>
